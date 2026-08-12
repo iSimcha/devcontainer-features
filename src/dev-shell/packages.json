@@ -1,0 +1,86 @@
+[
+    {
+        "repo": "BurntSushi/ripgrep",
+        "description": "ripgrep recursively searches directories for a regex pattern while respecting your gitignore",
+        "version": "14.1.1",
+        "filename": "ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz",
+        "glob": "rg"
+    },
+    {
+        "repo": "caddyserver/caddy",
+        "description": "Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS",
+        "version": "v2.9.1",
+        "filename": "caddy_2.9.1_linux_amd64.tar.gz",
+        "glob": "caddy"
+    },
+    {
+        "repo": "casey/just",
+        "description": "just is a handy way to save and run project-specific commands",
+        "version": "1.38.0",
+        "filename": "just-1.38.0-x86_64-unknown-linux-musl.tar.gz",
+        "glob": "just"
+    },
+    {
+        "repo": "denoland/deno",
+        "description": "Deno is a simple, modern and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust",
+        "version": "v2.1.5",
+        "filename": "deno-x86_64-unknown-linux-gnu.zip",
+        "glob": "deno"
+    },
+    {
+        "repo": "ducaale/xh",
+        "description": "Friendly and fast tool for sending HTTP requests",
+        "version": "v0.23.1",
+        "filename": "xh-v0.23.1-x86_64-unknown-linux-musl.tar.gz",
+        "glob": "xh"
+    },
+    {
+        "repo": "hairyhenderson/gomplate",
+        "description": "A flexible commandline tool for template rendering. Supports lots of local and remote datasources",
+        "version": "v4.3.0",
+        "filename": "gomplate_linux-amd64",
+        "bin": "gomplate"
+    },
+    {
+        "repo": "mikefarah/yq",
+        "description": "yq is a portable command-line YAML, JSON, XML, CSV, TOML and properties processor",
+        "version": "v4.45.1",
+        "filename": "yq_linux_amd64",
+        "bin": "yq"
+    },
+    {
+        "repo": "oven-sh/bun",
+        "description": "Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one",
+        "version": "bun-v1.3.5",
+        "filename": "bun-linux-x64.zip",
+        "glob": "bun"
+    },
+    {
+        "repo": "sharkdp/fd",
+        "description": "A simple, fast and user-friendly alternative to 'find'",
+        "version": "v10.2.0",
+        "filename": "fd-v10.2.0-x86_64-unknown-linux-musl.tar.gz",
+        "glob": "fd"
+    },
+    {
+        "repo": "starship/starship",
+        "description": "The minimal, blazing-fast, and infinitely customizable prompt for any shell!",
+        "version": "v1.22.1",
+        "filename": "starship-x86_64-unknown-linux-musl.tar.gz",
+        "glob": "starship"
+    },
+    {
+        "repo": "str4d/rage",
+        "description": "A simple, secure and modern file encryption tool (and Rust library) with small explicit keys, no config options, and UNIX-style composability",
+        "version": "v0.11.1",
+        "filename": "rage-v0.11.1-x86_64-linux.tar.gz",
+        "glob": "rage"
+    },
+    {
+        "repo": "watchexec/watchexec",
+        "description": "Executes commands in response to file modifications",
+        "version": "v2.2.1",
+        "filename": "watchexec-2.2.1-x86_64-unknown-linux-musl.tar.xz",
+        "glob": "watchexec"
+    }
+]

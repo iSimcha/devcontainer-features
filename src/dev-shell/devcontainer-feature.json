@@ -1,0 +1,35 @@
+{
+	"name": "iSimcha Dev Shell",
+	"id": "dev-shell",
+	"version": "1.0.0",
+	"description": "Installs Nushell, Starship and the shared CLI tool set, and lays down the iSimcha Nushell and Starship configuration.",
+	"documentationURL": "https://github.com/iSimcha/devcontainer-features/tree/main/src/dev-shell",
+	"options": {
+		"nushellVersion": {
+			"type": "string",
+			"default": "0.112.2",
+			"description": "Nushell version to install."
+		},
+		"ouchVersion": {
+			"type": "string",
+			"default": "0.5.1",
+			"description": "Version of ouch, the decompression tool used to unpack the other CLI tools."
+		},
+		"installPackages": {
+			"type": "boolean",
+			"default": true,
+			"description": "Install the CLI tools listed in packages.json (just, ripgrep, fd, bun, starship and the rest)."
+		},
+		"installConfig": {
+			"type": "boolean",
+			"default": true,
+			"description": "Lay down the Nushell and Starship configuration in the workspace .cache directory on container create."
+		}
+	},
+	"installsAfter": [
+		"ghcr.io/devcontainers/features/common-utils"
+	],
+	"postCreateCommand": {
+		"dev-shell-configure": "/usr/local/share/dev-shell/configure-environment.sh"
+	}
+}

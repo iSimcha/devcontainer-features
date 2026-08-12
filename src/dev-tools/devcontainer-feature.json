@@ -1,0 +1,23 @@
+{
+	"name": "iSimcha Dev Tools",
+	"id": "dev-tools",
+	"version": "1.0.0",
+	"description": "Installs the shared npm-based developer CLIs: cspell and the Claude Code CLI.",
+	"documentationURL": "https://github.com/iSimcha/devcontainer-features/tree/main/src/dev-tools",
+	"options": {
+		"installCspell": {
+			"type": "boolean",
+			"default": true,
+			"description": "Install the cspell CLI, used by the spell-check job and the VS Code extension."
+		},
+		"installClaudeCode": {
+			"type": "boolean",
+			"default": true,
+			"description": "Install the Claude Code CLI. The Anthropic.claude-code VS Code extension shells out to it."
+		}
+	},
+	"installsAfter": [
+		"ghcr.io/devcontainers/features/common-utils",
+		"ghcr.io/devcontainers/features/node"
+	]
+}

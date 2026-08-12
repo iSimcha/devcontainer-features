@@ -1,0 +1,18 @@
+{
+	"dev-tools-with-node": {
+		"image": "mcr.microsoft.com/devcontainers/base:debian",
+		"features": {
+			"ghcr.io/devcontainers/features/node:1": {},
+			"dev-tools": {}
+		}
+	},
+	"dev-tools-cspell-only": {
+		"image": "mcr.microsoft.com/devcontainers/base:debian",
+		"features": {
+			"ghcr.io/devcontainers/features/node:1": {},
+			"dev-tools": {
+				"installClaudeCode": false
+			}
+		}
+	}
+}

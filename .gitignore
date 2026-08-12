@@ -1,0 +1,6 @@
+# Dev container CLI test output
+.devcontainer-features-test/
+
+# Editor and OS noise
+.idea/
+.DS_Store
