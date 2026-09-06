@@ -30,7 +30,7 @@ if not ($bin_dir | path exists) {
 
 
 # install binaries will install the files into bin_dir
-def "install binaries" []: list<string> -> record<any> {
+def "install binaries" []: list<string> -> any {
 	let input = $in
 	if ($bin_dir | is-empty) or ($bin_dir | str length) == 0 {
 		log error $"bin_dir is not defined: '($bin_dir)'"
@@ -51,7 +51,7 @@ def "install binaries" []: list<string> -> record<any> {
 
 
 # Search for packages to install
-export def search []: string -> record<any> {
+export def search []: string -> any {
 	let input = $in
 	log info $"Searching packages for '($input)'"
 	$packages_json_location
@@ -61,11 +61,11 @@ export def search []: string -> record<any> {
 
 
 # Install a package
-export def install []: record<any> -> record<any> {
+export def install []: list<any> -> any {
 	let input = $in
 
 	$input | each {|it|
-		let url = $"https://github.com/($it.repo)/releases/download/($in.version)/($it.filename)"
+		let url = $"https://github.com/($it.repo)/releases/download/($it.version)/($it.filename)"
 		let tmp_dir = (mktemp --directory)
 		if ("bin" in $it) {
 			# Uncompressed
@@ -73,7 +73,7 @@ export def install []: record<any> -> record<any> {
 			http get $url | save $tmp_file
 			log debug $"tmp_file: '($tmp_file)'"
 			log debug $"tmp_dir: '($tmp_dir)'"
-			$tmp_file | install binaries
+			[$tmp_file] | install binaries
 		} else if ("glob" in $it) {
 			# Compressed
 			let tmp_file = ($tmp_dir | path join ($it.filename))
@@ -117,7 +117,7 @@ export def main [
 
 	} else if $action == "install-all" {
 		# Install all packages into the into the bin directory.
-		log info $"Installing package: '($repo)'"
+		log info $"Installing every package in '($packages_json_location)'"
 		$packages_json_location
 			| open
 			| install

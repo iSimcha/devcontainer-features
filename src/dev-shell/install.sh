@@ -41,11 +41,14 @@ install_tarball() {
 		rm --recursive "${tmp_dir}"
 		return 1
 	fi
-	local binary
+	local binary match
 	for binary in "$@"; do
 		# nu ships plugin binaries as nu_plugin_*, so the caller passes a glob.
-		local matches=("${tmp_dir}"/${binary})
-		if [[ ! -e "${matches[0]}" ]]; then
+		local matches=()
+		while IFS= read -r -d '' match; do
+			matches+=("${match}")
+		done < <(find "${tmp_dir}" -maxdepth 1 -type f -name "${binary}" -print0)
+		if [[ "${#matches[@]}" -eq 0 ]]; then
 			echo "ERROR: '${binary}' not found in '${url}'." >&2
 			rm --recursive "${tmp_dir}"
 			return 1
