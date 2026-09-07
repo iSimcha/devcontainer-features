@@ -60,7 +60,10 @@ $env.NU_LIB_DIRS = [
 if not (which starship | is-empty) {
 	# Starship is installed
 	mkdir ($nu.data-dir | path join "vendor/autoload")
-	starship init nu | save --force ($nu.data-dir | path join "vendor/autoload/starship.nu")
+	let starship_autoload = ($nu.data-dir | path join "vendor/autoload/starship.nu")
+	# Regenerated on every startup, and "save" refuses to overwrite, so drop the stale file first.
+	if ($starship_autoload | path exists) { rm $starship_autoload }
+	starship init nu | save $starship_autoload
 }
 
 use std "path add"
