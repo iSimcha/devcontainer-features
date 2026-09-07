@@ -54,7 +54,7 @@ export def ll [...args: glob]: nothing -> nothing {
 }
 
 # dl will download a file from a URL
-export def dl [url: string, --force (-f)]: nothing -> table<name: string, value: string> {
+export def dl [url: string, --overwrite (-o)]: nothing -> table<name: string, value: string> {
 	use std/log
 	let response_headers = (http head $url)
 	let content_disposition = ($response_headers | where name =~ 'content-disposition' | get value | parse --regex '.*filename=(?<filename>[^ ]+)')
@@ -73,11 +73,14 @@ export def dl [url: string, --force (-f)]: nothing -> table<name: string, value:
 	# "http get" streams the response while "http get --full" buffers the request. Separating the response headers
 	# from the body is not possible.
 	# https://discordapp.com/channels/601130461678272522/601130461678272524/1209936591267569675
-	if $force {
-		http get $url | save --progress --force $filename
-	} else {
-		http get $url | save --progress $filename
+	# "save" refuses to overwrite, and its own hint names a flag this command does not have.
+	if ($filename | path exists) {
+		if not $overwrite {
+			error make {msg: $"'($filename)' already exists. Pass --overwrite to replace it."}
+		}
+		rm $filename
 	}
+	http get $url | save --progress $filename
 	$response_headers
 }
 
