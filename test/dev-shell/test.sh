@@ -11,6 +11,13 @@ check "starship came from packages.json" starship --version
 check "just came from packages.json" just --version
 check "ripgrep came from packages.json" rg --version
 check "bun came from packages.json" bun --version
+check "yt came from packages.json" yt --version
+# fj has no --version flag; the subcommand is the only way to ask.
+check "fj came from packages.json" fj version
+check "uv came from packages.json" uv --version
+check "uvx came from packages.json" uvx --version
+check "biome came from packages.json" biome --version
+check "d2 came from packages.json" d2 --version
 
 check "shared files installed" test -f /usr/local/share/dev-shell/packages.json
 check "get-package.nu installed" test -x /usr/local/share/dev-shell/get-package.nu
@@ -20,6 +27,14 @@ check "shell config staged" test -f /usr/local/share/dev-shell/config/starship.t
 check "packages.json parses" nu --commands "open /usr/local/share/dev-shell/packages.json | length"
 check "no package filename has stray whitespace" nu --commands \
 	"if (open /usr/local/share/dev-shell/packages.json | any {|p| \$p.filename != (\$p.filename | str trim)}) { exit 1 }"
+
+# A wildcard glob such as "uv*" must install extracted binaries only, never the downloaded archive.
+check "no download archive installed alongside the binaries" nu --commands \
+	"if (ls /usr/local/bin | any {|f| \$f.name =~ '\\.(tar\\.[a-z0-9]+|tgz|zip)\$'}) { exit 1 }"
+
+# deno and watchexec were dropped deliberately; fail the build if an entry for either comes back.
+check "dropped tools stay out of packages.json" nu --commands \
+	"if (open /usr/local/share/dev-shell/packages.json | any {|p| \$p.repo in ['denoland/deno', 'watchexec/watchexec']}) { exit 1 }"
 
 # Run the postCreate script directly rather than relying on the harness lifecycle. It is
 # idempotent, so this is valid whether or not the harness already ran it.

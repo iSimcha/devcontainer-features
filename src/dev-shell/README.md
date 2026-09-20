@@ -22,8 +22,8 @@ Installs Nushell, Starship and the shared CLI tool set, and lays down the iSimch
 At image build time, as root:
 
 - Installs `nu` and its plugins, plus `ouch`, into `/usr/local/bin`.
-- Installs every tool in `packages.json` into `/usr/local/bin` (just, ripgrep, fd, deno, caddy, xh, gomplate, yq, bun,
-  starship, rage, watchexec).
+- Installs every tool in `packages.json` into `/usr/local/bin` (just, ripgrep, fd, caddy, xh, gomplate, yq, bun,
+  starship, rage, yt, fj, uv, biome, d2).
 - Stages `get-package.nu`, `packages.json` and the shell configuration under `/usr/local/share/dev-shell`.
 
 On container create, as the remote user, via the feature's `postCreateCommand`:

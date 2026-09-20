@@ -29,10 +29,12 @@ Add an entry to [src/dev-shell/packages.json](src/dev-shell/packages.json) and b
 [src/dev-shell/devcontainer-feature.json](src/dev-shell/devcontainer-feature.json). Consuming repos pick it up on their
 next rebuild, with no change on their side.
 
-Each entry names a GitHub release asset:
+Each entry names a downloadable asset:
 
-- `bin` for an uncompressed binary
+- `bin` for an uncompressed binary, saved under this name so a published filename can install as a different command
 - `glob` for a binary inside a compressed archive, unpacked with `ouch`
+- `url` for an asset that is not a GitHub release asset, used verbatim, with the version written into it literally.
+  Without it the download URL is built as `https://github.com/{repo}/releases/download/{version}/{filename}`
 
 ## What is deliberately NOT here
 
