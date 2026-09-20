@@ -1,7 +1,7 @@
 {
 	"name": "iSimcha Dev Shell",
 	"id": "dev-shell",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Installs Nushell, Starship and the shared CLI tool set, and lays down the iSimcha Nushell and Starship configuration.",
 	"documentationURL": "https://github.com/iSimcha/devcontainer-features/tree/main/src/dev-shell",
 	"options": {

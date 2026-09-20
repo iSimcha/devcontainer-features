@@ -7,6 +7,20 @@
         "glob": "rg"
     },
     {
+        "repo": "astral-sh/uv",
+        "description": "An extremely fast Python package and project manager, written in Rust",
+        "version": "0.12.17",
+        "filename": "uv-x86_64-unknown-linux-musl.tar.gz",
+        "glob": "uv*"
+    },
+    {
+        "repo": "biomejs/biome",
+        "description": "A toolchain for web projects: formatter and linter for JavaScript, TypeScript, JSX, CSS and GraphQL",
+        "version": "@biomejs/biome@2.5.14",
+        "filename": "biome-linux-x64-musl",
+        "bin": "biome"
+    },
+    {
         "repo": "caddyserver/caddy",
         "description": "Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS",
         "version": "v2.9.1",
@@ -21,11 +35,11 @@
         "glob": "just"
     },
     {
-        "repo": "denoland/deno",
-        "description": "Deno is a simple, modern and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust",
-        "version": "v2.1.5",
-        "filename": "deno-x86_64-unknown-linux-gnu.zip",
-        "glob": "deno"
+        "repo": "d2lang/d2",
+        "description": "A modern diagram scripting language that turns text to diagrams",
+        "version": "v0.9.0",
+        "filename": "d2-v0.9.0-linux-amd64.tar.gz",
+        "glob": "d2"
     },
     {
         "repo": "ducaale/xh",
@@ -56,6 +70,22 @@
         "glob": "bun"
     },
     {
+        "repo": "pandoras-box/forgejo-cli",
+        "description": "Forgejo CLI for repositories, issues, pull requests, releases and packages",
+        "version": "v0.17.0",
+        "url": "https://dev.a8n.run/api/packages/pandoras-box/generic/forgejo-cli/v0.17.0/fj-linux-x86_64-static",
+        "filename": "fj-linux-x86_64-static",
+        "bin": "fj"
+    },
+    {
+        "repo": "pandoras-box/youtrack-cli",
+        "description": "YouTrack CLI for issues, articles, boards, knowledge base and time tracking",
+        "version": "v0.16.0",
+        "url": "https://dev.a8n.run/api/packages/pandoras-box/generic/youtrack-cli/v0.16.0/yt-linux-x86_64",
+        "filename": "yt-linux-x86_64",
+        "bin": "yt"
+    },
+    {
         "repo": "sharkdp/fd",
         "description": "A simple, fast and user-friendly alternative to 'find'",
         "version": "v10.2.0",
@@ -75,12 +105,5 @@
         "version": "v0.11.1",
         "filename": "rage-v0.11.1-x86_64-linux.tar.gz",
         "glob": "rage"
-    },
-    {
-        "repo": "watchexec/watchexec",
-        "description": "Executes commands in response to file modifications",
-        "version": "v2.2.1",
-        "filename": "watchexec-2.2.1-x86_64-unknown-linux-musl.tar.xz",
-        "glob": "watchexec"
     }
 ]

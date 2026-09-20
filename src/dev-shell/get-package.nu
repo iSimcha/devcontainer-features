@@ -65,7 +65,8 @@ export def install []: list<any> -> any {
 	let input = $in
 
 	$input | each {|it|
-		let url = $"https://github.com/($it.repo)/releases/download/($it.version)/($it.filename)"
+		# An entry may carry a literal url for a source that is not a GitHub release asset.
+		let url = ($it.url? | default $"https://github.com/($it.repo)/releases/download/($it.version)/($it.filename)")
 		let tmp_dir = (mktemp --directory)
 		if ("bin" in $it) {
 			# Uncompressed
@@ -75,13 +76,16 @@ export def install []: list<any> -> any {
 			log debug $"tmp_dir: '($tmp_dir)'"
 			[$tmp_file] | install binaries
 		} else if ("glob" in $it) {
-			# Compressed
+			# Compressed. The archive stays outside the extraction directory, so a wildcard
+			# glob such as "uv*" cannot match the downloaded archive itself.
 			let tmp_file = ($tmp_dir | path join ($it.filename))
+			let extract_dir = ($tmp_dir | path join "extracted")
+			mkdir $extract_dir
 			http get $url | save $tmp_file
-			ouch --yes --quiet --accessible decompress --dir $tmp_dir $tmp_file
+			ouch --yes --quiet --accessible decompress --dir $extract_dir $tmp_file
 			log debug $"tmp_file: '($tmp_file)'"
-			log debug $"tmp_dir: '($tmp_dir)'"
-			glob --no-dir ($tmp_dir | path join "**" $it.glob) | install binaries
+			log debug $"extract_dir: '($extract_dir)'"
+			glob --no-dir ($extract_dir | path join "**" $it.glob) | install binaries
 		} else {
 			log error $"Package does not have bin \(uncompressed\) or glob \(compressed\) defined: '($it)'"
 		}
