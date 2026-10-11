@@ -36,6 +36,17 @@ Each entry names a downloadable asset:
 - `url` for an asset that is not a GitHub release asset, used verbatim, with the version written into it literally.
   Without it the download URL is built as `https://github.com/{repo}/releases/download/{version}/{filename}`
 
+Every entry also needs `sha256`: the lowercase hex SHA-256 of the exact file downloaded (the archive for a `glob`
+entry, the binary for a `bin` entry). `get-package.nu` hashes the download and fails the build on a mismatch or a
+missing checksum. Compute it after downloading the asset by hand:
+
+```nu
+open --raw <downloaded-file> | hash sha256
+```
+
+Prefer a checksum the project publishes for the release over one computed from the download alone, and use `sha256sum
+--check` to confirm it first where that file itself only lists sha256 (not another digest) for the asset.
+
 ## Reusable workflows
 
 Shared CI checks live here as reusable GitHub Actions workflows, so a repository calls one definition instead of

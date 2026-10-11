@@ -4,6 +4,7 @@
         "description": "ripgrep recursively searches directories for a regex pattern while respecting your gitignore",
         "version": "14.1.1",
         "filename": "ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz",
+        "sha256": "4cf9f2741e6c465ffdb7c26f38056a59e2a2544b51f7cc128ef28337eeae4d8e",
         "glob": "rg"
     },
     {
@@ -11,6 +12,7 @@
         "description": "An extremely fast Python package and project manager, written in Rust",
         "version": "0.12.17",
         "filename": "uv-x86_64-unknown-linux-musl.tar.gz",
+        "sha256": "6401c4665d8fa2a9893e087c91f585430738e3170f5398a1141483efb4a93310",
         "glob": "uv*"
     },
     {
@@ -18,6 +20,7 @@
         "description": "A toolchain for web projects: formatter and linter for JavaScript, TypeScript, JSX, CSS and GraphQL",
         "version": "@biomejs/biome@2.5.14",
         "filename": "biome-linux-x64-musl",
+        "sha256": "d15a39b256ca1294fe8f8817f9162f7c26229ca0cb8bd19d0369540c1a01d781",
         "bin": "biome"
     },
     {
@@ -25,6 +28,7 @@
         "description": "Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS",
         "version": "v2.9.1",
         "filename": "caddy_2.9.1_linux_amd64.tar.gz",
+        "sha256": "0542edbb5ce0d6987de6a37caa2bbc52a42445ec094fb9ba3e605534af5dd898",
         "glob": "caddy"
     },
     {
@@ -32,6 +36,7 @@
         "description": "just is a handy way to save and run project-specific commands",
         "version": "1.38.0",
         "filename": "just-1.38.0-x86_64-unknown-linux-musl.tar.gz",
+        "sha256": "c803e67fd7b0af01667bd537197bc3df319938eacf9e8d51a441c71d03035bb5",
         "glob": "just"
     },
     {
@@ -39,6 +44,7 @@
         "description": "A modern diagram scripting language that turns text to diagrams",
         "version": "v0.9.0",
         "filename": "d2-v0.9.0-linux-amd64.tar.gz",
+        "sha256": "5669ddc46b99e942cc96078f4a4e36d5e62103348f4c05179ede27802fdd87a9",
         "glob": "d2"
     },
     {
@@ -46,6 +52,7 @@
         "description": "Friendly and fast tool for sending HTTP requests",
         "version": "v0.23.1",
         "filename": "xh-v0.23.1-x86_64-unknown-linux-musl.tar.gz",
+        "sha256": "a29ed6afcabf2c575c24499397fa3a840047dffc4a68e4a1a886f22584712946",
         "glob": "xh"
     },
     {
@@ -53,6 +60,7 @@
         "description": "A flexible commandline tool for template rendering. Supports lots of local and remote datasources",
         "version": "v4.3.0",
         "filename": "gomplate_linux-amd64",
+        "sha256": "8adb82e5be7dfde49857ebd7c948fd8f9b10cdcdb13f71b74685dff6e6756890",
         "bin": "gomplate"
     },
     {
@@ -60,6 +68,7 @@
         "description": "yq is a portable command-line YAML, JSON, XML, CSV, TOML and properties processor",
         "version": "v4.45.1",
         "filename": "yq_linux_amd64",
+        "sha256": "654d2943ca1d3be2024089eb4f270f4070f491a0610481d128509b2834870049",
         "bin": "yq"
     },
     {
@@ -67,13 +76,15 @@
         "description": "Secret scanner that finds and validates credentials in files and git history",
         "version": "v2.11.1",
         "filename": "kingfisher-linux-x64.tgz",
+        "sha256": "84e4a4c45814f05e80aa8eee768e5170d758736fa116ffaf03565da4d5a77447",
         "glob": "kingfisher"
     },
     {
         "repo": "oven-sh/bun",
-        "description": "Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one",
+        "description": "Incredibly fast JavaScript runtime, bundler, test runner, and package manager \u2013 all in one",
         "version": "bun-v1.3.5",
         "filename": "bun-linux-x64.zip",
+        "sha256": "7051d86a924aefea3e0b96213b5fd8f79c0793f9cae6534233e627e5c3db4669",
         "glob": "bun"
     },
     {
@@ -82,6 +93,7 @@
         "version": "v0.17.0",
         "url": "https://dev.a8n.run/api/packages/pandoras-box/generic/forgejo-cli/v0.17.0/fj-linux-x86_64-static",
         "filename": "fj-linux-x86_64-static",
+        "sha256": "3ac8334b29d7912816e940e160f3e0240be68e81760ed9b91d09cbe6ada52628",
         "bin": "fj"
     },
     {
@@ -90,6 +102,7 @@
         "version": "v0.16.0",
         "url": "https://dev.a8n.run/api/packages/pandoras-box/generic/youtrack-cli/v0.16.0/yt-linux-x86_64",
         "filename": "yt-linux-x86_64",
+        "sha256": "671b634e0e01495f68a5a7b378872acaa5f9c58ed73c77f2dd930abfc70dfdd3",
         "bin": "yt"
     },
     {
@@ -97,6 +110,7 @@
         "description": "Nosey Parker finds secrets and sensitive information in textual data and git history",
         "version": "v0.24.0",
         "filename": "noseyparker-v0.24.0-x86_64-unknown-linux-musl.tar.gz",
+        "sha256": "013b06f1f29271150585cb35d2a150929871126f51715744714ad5843179f57c",
         "glob": "noseyparker"
     },
     {
@@ -104,6 +118,7 @@
         "description": "Fast secrets scanner that finds credentials in code, files, and git history",
         "version": "v1.2.11",
         "filename": "titus-linux-amd64",
+        "sha256": "c3c5bc8dccdc59cc1583384b28bf9d85c9fb93f7f758e665440e7d296dac351b",
         "bin": "titus"
     },
     {
@@ -111,6 +126,7 @@
         "description": "A simple, fast and user-friendly alternative to 'find'",
         "version": "v10.2.0",
         "filename": "fd-v10.2.0-x86_64-unknown-linux-musl.tar.gz",
+        "sha256": "d9bfa25ec28624545c222992e1b00673b7c9ca5eb15393c40369f10b28f9c932",
         "glob": "fd"
     },
     {
@@ -118,6 +134,7 @@
         "description": "The minimal, blazing-fast, and infinitely customizable prompt for any shell!",
         "version": "v1.22.1",
         "filename": "starship-x86_64-unknown-linux-musl.tar.gz",
+        "sha256": "62c91b5ecc7f8c8c6ea7ffea42a98bd2e6a2d29daf61562fac04daece18a6461",
         "glob": "starship"
     },
     {
@@ -125,6 +142,7 @@
         "description": "A simple, secure and modern file encryption tool (and Rust library) with small explicit keys, no config options, and UNIX-style composability",
         "version": "v0.11.1",
         "filename": "rage-v0.11.1-x86_64-linux.tar.gz",
+        "sha256": "b737607e430c0c92c3a566b82c7d7a3a051a10f5c0d8e5a82848c4572e31a8e9",
         "glob": "rage"
     },
     {
@@ -132,6 +150,7 @@
         "description": "Find, verify, and analyze leaked credentials",
         "version": "v3.99.2",
         "filename": "trufflehog_3.99.2_linux_amd64.tar.gz",
+        "sha256": "3c7b0d1dc4278294269bfdd7594bca8bb28c78da0a4a06ad202ded37b48deca4",
         "glob": "trufflehog"
     }
 ]

@@ -43,6 +43,14 @@ remote user's home directory is not the installing user's home, so a user-scoped
 `get-package.nu` can be run by hand inside the container. It reads `/usr/local/share/dev-shell/packages.json` by
 default; `DEV_SHELL_PACKAGES_JSON` and `DEV_SHELL_BIN_DIR` override the locations.
 
+Every entry in `packages.json` needs a `sha256`: the lowercase hex SHA-256 of the exact file downloaded for it (the
+archive for a `glob` entry, the binary for a `bin` entry). `get-package.nu` hashes the download right after fetching
+it and exits non-zero on a missing or mismatched checksum, so no package installs without one. Compute it with:
+
+```nu
+open --raw <downloaded-file> | hash sha256
+```
+
 ```nu
 nu /usr/local/share/dev-shell/get-package.nu search ripgrep
 nu /usr/local/share/dev-shell/get-package.nu install-all
