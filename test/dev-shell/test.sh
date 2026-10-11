@@ -46,6 +46,7 @@ check "every package has a 64-character hex sha256" nu --commands \
 	"if (open /usr/local/share/dev-shell/packages.json | any {|p| not ((\$p.sha256? | default '') =~ '^[0-9a-f]{64}\$')}) { exit 1 }"
 
 # A wrong sha256 must fail the install and must not install that entry's binary.
+# shellcheck disable=SC2016
 check "a wrong sha256 fails install-all and installs nothing for that entry" bash -c '
 	set -euo pipefail
 	tmp_json="$(mktemp --suffix=.json)"
@@ -59,6 +60,7 @@ check "a wrong sha256 fails install-all and installs nothing for that entry" bas
 '
 
 # A removed sha256 key must fail the install the same way a wrong one does.
+# shellcheck disable=SC2016
 check "a missing sha256 fails install-all" bash -c '
 	set -euo pipefail
 	tmp_json="$(mktemp --suffix=.json)"
