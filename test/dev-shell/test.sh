@@ -41,6 +41,36 @@ check "no download archive installed alongside the binaries" nu --commands \
 check "dropped tools stay out of packages.json" nu --commands \
 	"if (open /usr/local/share/dev-shell/packages.json | any {|p| \$p.repo in ['denoland/deno', 'watchexec/watchexec']}) { exit 1 }"
 
+# A missing checksum must never silently disable the integrity check for that entry.
+check "every package has a 64-character hex sha256" nu --commands \
+	"if (open /usr/local/share/dev-shell/packages.json | any {|p| not ((\$p.sha256? | default '') =~ '^[0-9a-f]{64}\$')}) { exit 1 }"
+
+# A wrong sha256 must fail the install and must not install that entry's binary.
+check "a wrong sha256 fails install-all and installs nothing for that entry" bash -c '
+	set -euo pipefail
+	tmp_json="$(mktemp --suffix=.json)"
+	tmp_bin="$(mktemp -d)"
+	trap "rm -rf \"${tmp_json}\" \"${tmp_bin}\"" EXIT
+	nu --commands "open /usr/local/share/dev-shell/packages.json | update 0.sha256 \"0000000000000000000000000000000000000000000000000000000000000000\" | save --force \"${tmp_json}\""
+	if DEV_SHELL_PACKAGES_JSON="${tmp_json}" DEV_SHELL_BIN_DIR="${tmp_bin}" nu /usr/local/share/dev-shell/get-package.nu install-all; then
+		exit 1
+	fi
+	[ -z "$(ls -A "${tmp_bin}")" ]
+'
+
+# A removed sha256 key must fail the install the same way a wrong one does.
+check "a missing sha256 fails install-all" bash -c '
+	set -euo pipefail
+	tmp_json="$(mktemp --suffix=.json)"
+	tmp_bin="$(mktemp -d)"
+	trap "rm -rf \"${tmp_json}\" \"${tmp_bin}\"" EXIT
+	nu --commands "open /usr/local/share/dev-shell/packages.json | update 0 {|row| \$row | reject sha256} | save --force \"${tmp_json}\""
+	if DEV_SHELL_PACKAGES_JSON="${tmp_json}" DEV_SHELL_BIN_DIR="${tmp_bin}" nu /usr/local/share/dev-shell/get-package.nu install-all; then
+		exit 1
+	fi
+	[ -z "$(ls -A "${tmp_bin}")" ]
+'
+
 # Run the postCreate script directly rather than relying on the harness lifecycle. It is
 # idempotent, so this is valid whether or not the harness already ran it.
 check "configure-environment.sh succeeds" /usr/local/share/dev-shell/configure-environment.sh
