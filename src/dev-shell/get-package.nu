@@ -60,6 +60,20 @@ export def search []: string -> any {
 }
 
 
+# verify-sha256 hashes a downloaded file and exits non-zero on a missing or mismatched checksum.
+def verify-sha256 [it: record, file: string] {
+	let expected = ($it.sha256? | default "")
+	if ($expected | is-empty) {
+		log error $"No sha256 pinned for '($it.repo)' \(url: ($it.url? | default "")\)"
+		exit 1
+	}
+	let actual = (open --raw $file | hash sha256)
+	if $actual != $expected {
+		log error $"sha256 mismatch for '($it.repo)' \(url: ($it.url? | default "")\): expected '($expected)', got '($actual)'"
+		exit 1
+	}
+}
+
 # Install a package
 export def install []: list<any> -> any {
 	let input = $in
@@ -72,6 +86,7 @@ export def install []: list<any> -> any {
 			# Uncompressed
 			let tmp_file = ($tmp_dir | path join ($it.bin))
 			http get $url | save $tmp_file
+			verify-sha256 $it $tmp_file
 			log debug $"tmp_file: '($tmp_file)'"
 			log debug $"tmp_dir: '($tmp_dir)'"
 			[$tmp_file] | install binaries
@@ -82,12 +97,14 @@ export def install []: list<any> -> any {
 			let extract_dir = ($tmp_dir | path join "extracted")
 			mkdir $extract_dir
 			http get $url | save $tmp_file
+			verify-sha256 $it $tmp_file
 			ouch --yes --quiet --accessible decompress --dir $extract_dir $tmp_file
 			log debug $"tmp_file: '($tmp_file)'"
 			log debug $"extract_dir: '($extract_dir)'"
 			glob --no-dir ($extract_dir | path join "**" $it.glob) | install binaries
 		} else {
 			log error $"Package does not have bin \(uncompressed\) or glob \(compressed\) defined: '($it)'"
+			exit 1
 		}
 
 	}
