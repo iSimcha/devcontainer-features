@@ -36,13 +36,54 @@ Each entry names a downloadable asset:
 - `url` for an asset that is not a GitHub release asset, used verbatim, with the version written into it literally.
   Without it the download URL is built as `https://github.com/{repo}/releases/download/{version}/{filename}`
 
+## Reusable workflows
+
+Shared CI checks live here as reusable GitHub Actions workflows, so a repository calls one definition instead of
+carrying its own copy.
+
+### Secret scan: `check-secrets.yml`
+
+Runs [Kingfisher](https://github.com/mongodb/kingfisher), [TruffleHog](https://github.com/trufflesecurity/trufflehog),
+[Nosey Parker](https://github.com/praetorian-inc/noseyparker) and [Titus](https://github.com/praetorian-inc/titus) over
+the full history of the checked-out ref, one check per scanner, so a run reports every scanner that fails.
+
+```yaml
+name: Secrets
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  check-secrets:
+    uses: iSimcha/devcontainer-features/.github/workflows/check-secrets.yml@<full-commit-sha>
+```
+
+Pin `@` to a full commit SHA. Every input is optional:
+
+| Input | Default | Description |
+| --- | --- | --- |
+| `kingfisher_excludes` | empty | Space-separated paths, each passed to Kingfisher as `--exclude`. It does not reach git history. |
+| `kingfisher_skip_regex` | empty | One regular expression passed as `--skip-regex`; join alternatives with `\|`. The only way to suppress a finding in git history. |
+| `noseyparker_ignore_file` | `.noseyparker-ignore.txt` | Nosey Parker ignore file, used only when it exists. |
+| `noseyparker_findings_exclude` | empty | Comma-separated finding ids dropped from the verdict. An id the scan did not report fails the job. |
+| `titus_rules_exclude` | empty | Comma-separated rule ids (for example `np.aws.2`) passed as `--rules-exclude`. The only way to suppress a Titus finding in git history. |
+
+TruffleHog runs with `--only-verified`, so it fails only for secrets the provider confirms are live. Each scanner is a
+pinned release whose sha256 is checked before it runs. To update one, change the `url` and `sha256` in the install step
+of [check-secrets.yml](.github/workflows/check-secrets.yml).
+
 ## What is deliberately NOT here
 
 These stay in [iSimcha/common-files](https://github.com/iSimcha/common-files) and its files-sync action, because a
 feature installs into the container and cannot put a file in the consuming repository's working tree:
 
 - `.cspell.json`, `.prettierrc.json`, `justfile`, `.gitignore`, `.vscode/settings.json`, `devcontainer.json`
-- `.github/workflows/*`
 - `.scripts/secrets/mod.nu`, which the repo `justfile` loads with `use "{{ justfile_directory() }}/.scripts/secrets"`
 - `.scripts/export_run_history.nu`, a Cloud Run reporting script carrying environment-specific project ids
 - `.devcontainer/install-jdk-jetbrains.nu`, `fix-jetbrains-vmoptions.nu` and `config-devcontainer.sh`, since JetBrains
