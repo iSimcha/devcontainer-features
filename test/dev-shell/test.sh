@@ -18,6 +18,11 @@ check "uv came from packages.json" uv --version
 check "uvx came from packages.json" uvx --version
 check "biome came from packages.json" biome --version
 check "d2 came from packages.json" d2 --version
+check "kingfisher came from packages.json" kingfisher --version
+check "trufflehog came from packages.json" trufflehog --version
+check "noseyparker came from packages.json" noseyparker --version
+# titus has no --version flag; the subcommand is the only way to ask.
+check "titus came from packages.json" titus version
 
 check "shared files installed" test -f /usr/local/share/dev-shell/packages.json
 check "get-package.nu installed" test -x /usr/local/share/dev-shell/get-package.nu
