@@ -80,8 +80,8 @@ of [check-secrets.yml](.github/workflows/check-secrets.yml).
 
 ## What is deliberately NOT here
 
-These stay in [iSimcha/common-files](https://github.com/iSimcha/common-files) and its files-sync action, because a
-feature installs into the container and cannot put a file in the consuming repository's working tree:
+A feature installs into the container and cannot put a file in the consuming repository's working tree, so these
+files are not features. They were previously synced by `iSimcha/common-files`, which is archived.
 
 - `.cspell.json`, `.prettierrc.json`, `justfile`, `.gitignore`, `.vscode/settings.json`, `devcontainer.json`
 - `.scripts/secrets/mod.nu`, which the repo `justfile` loads with `use "{{ justfile_directory() }}/.scripts/secrets"`
