@@ -96,7 +96,7 @@
         "repo": "praetorian-inc/noseyparker",
         "description": "Nosey Parker finds secrets and sensitive information in textual data and git history",
         "version": "v0.24.0",
-        "filename": "noseyparker-v0.24.0-x86_64-unknown-linux-gnu.tar.gz",
+        "filename": "noseyparker-v0.24.0-x86_64-unknown-linux-musl.tar.gz",
         "glob": "noseyparker"
     },
     {
