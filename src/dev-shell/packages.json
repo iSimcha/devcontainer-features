@@ -63,6 +63,13 @@
         "bin": "yq"
     },
     {
+        "repo": "mongodb/kingfisher",
+        "description": "Secret scanner that finds and validates credentials in files and git history",
+        "version": "v2.11.1",
+        "filename": "kingfisher-linux-x64.tgz",
+        "glob": "kingfisher"
+    },
+    {
         "repo": "oven-sh/bun",
         "description": "Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one",
         "version": "bun-v1.3.5",
@@ -86,6 +93,20 @@
         "bin": "yt"
     },
     {
+        "repo": "praetorian-inc/noseyparker",
+        "description": "Nosey Parker finds secrets and sensitive information in textual data and git history",
+        "version": "v0.24.0",
+        "filename": "noseyparker-v0.24.0-x86_64-unknown-linux-gnu.tar.gz",
+        "glob": "noseyparker"
+    },
+    {
+        "repo": "praetorian-inc/titus",
+        "description": "Fast secrets scanner that finds credentials in code, files, and git history",
+        "version": "v1.2.11",
+        "filename": "titus-linux-amd64",
+        "bin": "titus"
+    },
+    {
         "repo": "sharkdp/fd",
         "description": "A simple, fast and user-friendly alternative to 'find'",
         "version": "v10.2.0",
@@ -105,5 +126,12 @@
         "version": "v0.11.1",
         "filename": "rage-v0.11.1-x86_64-linux.tar.gz",
         "glob": "rage"
+    },
+    {
+        "repo": "trufflesecurity/trufflehog",
+        "description": "Find, verify, and analyze leaked credentials",
+        "version": "v3.99.2",
+        "filename": "trufflehog_3.99.2_linux_amd64.tar.gz",
+        "glob": "trufflehog"
     }
 ]
