@@ -100,6 +100,7 @@ check "get-hash hashes a file" nu --commands \
 check "table-diff reports differing rows" nu --commands \
 	"use ${PWD}/.cache/nushell/scripts/functions.nu *; table-diff [[a]; [1] [2]] [[a]; [2] [3]] --keys [a] | length | if \$in != 2 { exit 1 }"
 check "os-release parses" nu --commands "use ${PWD}/.cache/nushell/scripts/functions.nu *; os-release | is-empty | if \$in { exit 1 }"
+# shellcheck disable=SC2016
 check "backup and restore round-trip" bash -c '
 	set -euo pipefail
 	tmp="$(mktemp -d)"
