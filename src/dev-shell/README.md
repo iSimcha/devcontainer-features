@@ -35,6 +35,20 @@ On container create, as the remote user, via the feature's `postCreateCommand`:
 
 Add `.cache/` to the consuming repository's `.gitignore`.
 
+## Shell functions
+
+`scripts/functions.nu` is loaded by `config.nu` (`use functions.nu *`) and defines:
+
+- Listing: `l`, `la`, `ll`, `lt`, `lrt`, `lrs`
+- Search: `rga` (ripgrep with hidden and ignored files), `fda` (fd with hidden and ignored files)
+- Files: `get-hash`, `backup` and `restore` (via ouch), `find-dir-parent`, `table-diff`
+- Download: `dl`, `url-filename`
+- Git: `git-log`, `git-commit`, `git-version` (needs the `inc` plugin: `plugin add /usr/local/bin/nu_plugin_inc`)
+- System: `os-release`, `get-mountpoints`
+
+Workstation-only helpers (`rdp`, `rdp4k`, `chezmoi-private`, `cert-get`) are not included: their tools (a FreeRDP
+client, chezmoi, cfssl-certinfo) are not installed by this feature.
+
 ## Notes
 
 Binaries install to `/usr/local/bin` rather than `~/.local/bin`. The feature installs as root at build time, when the
