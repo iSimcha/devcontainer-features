@@ -88,4 +88,29 @@ check "bash history is preserved in the workspace" test -L "${HOME}/.bash_histor
 # The functions module is what a developer actually gets in an interactive shell.
 check "nushell functions load" nu --commands "use ${PWD}/.cache/nushell/scripts/functions.nu *; l"
 
+# Every helper ported from container-apps must be defined by the functions module.
+for fn in l la ll lt lrt lrs rga fda get-hash dl url-filename git-log git-commit git-version backup restore os-release get-mountpoints find-dir-parent table-diff; do
+	check "function ${fn} is defined" nu --commands \
+		"use ${PWD}/.cache/nushell/scripts/functions.nu *; if (scope commands | where name == '${fn}' | is-empty) { exit 1 }"
+done
+
+# Side-effect-free calls that exercise a ported function end to end.
+check "get-hash hashes a file" nu --commands \
+	"use ${PWD}/.cache/nushell/scripts/functions.nu *; get-hash /usr/local/share/dev-shell/packages.json | get hash.0 | str length | if \$in != 64 { exit 1 }"
+check "table-diff reports differing rows" nu --commands \
+	"use ${PWD}/.cache/nushell/scripts/functions.nu *; table-diff [[a]; [1] [2]] [[a]; [2] [3]] --keys [a] | length | if \$in != 2 { exit 1 }"
+check "os-release parses" nu --commands "use ${PWD}/.cache/nushell/scripts/functions.nu *; os-release | is-empty | if \$in { exit 1 }"
+# shellcheck disable=SC2016
+check "backup and restore round-trip" bash -c '
+	set -euo pipefail
+	tmp="$(mktemp -d)"
+	trap "rm -rf \"${tmp}\"" EXIT
+	cd "${tmp}"
+	mkdir data && echo hello > data/file.txt
+	nu --commands "use '"${PWD}"'/.cache/nushell/scripts/functions.nu *; backup data"
+	rm -r data
+	nu --commands "use '"${PWD}"'/.cache/nushell/scripts/functions.nu *; restore (glob data-*.tar.zst | first)"
+	[ "$(cat data/file.txt)" = "hello" ]
+'
+
 reportResults
