@@ -17,6 +17,29 @@ jobs:
       - name: Run shellcheck over the install scripts
         run: shellcheck --external-sources src/*/*.sh test/*/*.sh
 
+  no-common-submodule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v5
+
+      - name: Confirm the common submodule has not come back
+        # This repo is public; iSimcha/common is private and must never be vendored here. See DF-12.
+        run: |
+          set -euo pipefail
+          if [ -f .gitmodules ]; then
+            echo "::error::.gitmodules must not exist in this public repo" >&2
+            exit 1
+          fi
+          if git submodule status | grep -q .; then
+            echo "::error::a git submodule is registered in this public repo" >&2
+            exit 1
+          fi
+          if grep -rq "iSimcha/common\(\"\|'\| \|$\)" --exclude-dir=.git --exclude=test.yaml .; then
+            echo "::error::found a reference to the iSimcha/common submodule" >&2
+            exit 1
+          fi
+
   test:
     runs-on: ubuntu-latest
     strategy:
