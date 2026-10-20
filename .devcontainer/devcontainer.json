@@ -16,20 +16,9 @@
         "ghcr.io/devcontainers/features/docker-in-docker:4.1.3": {}
     },
     "waitFor": "onCreateCommand",
-    "updateContentCommand": {
-        "git-submodule": "git submodule update --init"
-    },
-    // Re-initializes the common submodule on every start, so a container created before it existed picks it up.
-    "postStartCommand": {
-        "git-submodule": "git submodule update --init"
-    },
     "customizations": {
         "codespaces": {
-            "openFiles": ["README.md"],
-            // Read-only token for the private common submodule. https://docs.github.com/en/codespaces/managing-your-codespaces/managing-repository-access-for-your-codespaces
-            "repositories": {
-                "iSimcha/common": { "permissions": { "contents": "read" } }
-            }
+            "openFiles": ["README.md"]
         },
         "vscode": {
             "extensions": [
