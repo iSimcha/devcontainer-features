@@ -16,7 +16,7 @@ jobs:
       packages: write
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Publish the features to ghcr.io
         uses: devcontainers/action@v1
