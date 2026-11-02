@@ -1,7 +1,7 @@
 {
     "name": "devcontainer-features development container",
     // https://github.com/devcontainers/images/blob/main/src/base-debian/history/1.0.9.md
-    "image": "mcr.microsoft.com/devcontainers/base:1-debian-12",
+    "image": "mcr.microsoft.com/devcontainers/base:2-debian-12",
     "hostRequirements": {
         // Default is 2 cores/8 GB memory
         "cpus": 2,
