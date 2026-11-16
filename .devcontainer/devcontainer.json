@@ -10,7 +10,7 @@
     "features": {
         // The repo's own features, pulled from ghcr.io. Local ./ feature paths only work inside .devcontainer/.
         "ghcr.io/isimcha/devcontainer-features/dev-shell:1": {},
-        "ghcr.io/devcontainers/features/node:2.1.1": {},
+        "ghcr.io/devcontainers/features/node:2.1.2": {},
         "ghcr.io/isimcha/devcontainer-features/dev-tools:1": {},
         // `devcontainer features test` needs a Docker daemon.
         "ghcr.io/devcontainers/features/docker-in-docker:4.1.3": {}
