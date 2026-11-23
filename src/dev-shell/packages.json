@@ -82,9 +82,9 @@
     {
         "repo": "oven-sh/bun",
         "description": "Incredibly fast JavaScript runtime, bundler, test runner, and package manager \u2013 all in one",
-        "version": "bun-v1.3.5",
+        "version": "bun-v1.4.4",
         "filename": "bun-linux-x64.zip",
-        "sha256": "7051d86a924aefea3e0b96213b5fd8f79c0793f9cae6534233e627e5c3db4669",
+        "sha256": "bf8ccbfb2b0b80159e0f9a6d15c55317add8077534dbc6130a3edb52fccb395c",
         "glob": "bun"
     },
     {
